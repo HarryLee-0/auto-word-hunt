@@ -18,6 +18,9 @@ Solutions.board = BOARD.copy()
 
 # print(BOARD[1][2])
 
+import time
+start = time.time()
+
 for i in range(4):
     for ie in range(4):
         tile = Searcher([i,ie], [], "")
@@ -39,6 +42,12 @@ for solution in Solutions.solutions:
 
 values.sort()
 
+entered = []
 with open(OUT, "a") as f:
     for value in values:
-        f.write(decoded[value] + "\n")
+        if not(decoded[value] in entered):
+            f.write(decoded[value] + "\n")
+            entered.append(decoded[value])
+
+end = time.time()
+print(end-start)
